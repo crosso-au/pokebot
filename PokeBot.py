@@ -7,7 +7,7 @@ import urllib.parse
 # Configuration
 DATA_FILE = "scraped_data.json"
 ITEMS_FILE = "items.json"
-DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1350036168875446292/Is8lBpcA9ByJLUO7rYW0-LJzl33fF6FEAnH_j3l4laUpsBay6N5tSTekqDrdFMZ2Xe7o"  # replace with your webhook URL
+DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"  # replace with your webhook URL
 
 def load_data(filename):
     """Load previously scraped data from a JSON file."""
