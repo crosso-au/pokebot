@@ -35,23 +35,22 @@ Required Python packages:
 ### Step 1. Verify Python Installation
 
 - **Windows**: Open Command Prompt and run:
- 
-`     python --version`
+
+` python --version`
 
 or
 
-`   	 py --version`
+`py --version`
 	
 	
 ### Linux/Mac: Open Terminal and run:
-`    python3 --version`
+`python3 --version`
 	
 If Python is not installed or not found in PATH, please install it first. (See the optional platform‑specific installer scripts below.)
 
 ### Step 2. Install Python Dependencies
 An automated installer script is provided. In the project directory, run:
-`
-    python installer.py`
+`python installer.py`
 
 This script will:
 
@@ -131,7 +130,7 @@ Update the DISCORD_WEBHOOK_URL in the script with your Discord webhook URL to re
 ## Running the Scraper
 Once the dependencies are installed and configuration is set up, run:
 
-`    python PokeBot.py`
+`python PokeBot.py`
 
 The script will:
 1. Scrape data from the URLs specified in items.json.
