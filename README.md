@@ -1,6 +1,6 @@
 ![](https://cdn.crossboxlabs.com/cbl-logo.png)
 
-[![github](https://img.shields.io/badge/CrossboxLabs%20|%20crosso_au-8A2BE2)](https://github.com/crosso-au/) :metal:
+[![github](https://img.shields.io/badge/CrossboxLabs%20|%20crosso_au-8A2BE2)](https://github.com/crosso-au/) 
 ------------
 
 # POKEBOT
@@ -146,3 +146,5 @@ The script will:
 
 # License
 This project is provided "as is" without warranty. Feel free to modify it for your own use.
+
+:metal:
