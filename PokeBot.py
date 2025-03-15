@@ -6,8 +6,7 @@ import urllib.parse
 
 # Configuration
 DATA_FILE = "scraped_data.json"
-ITEMS_FILE = "items.json"
-DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"  # replace with your webhook URL
+CONFIG_FILE = "config.json"
 
 def load_data(filename):
     """Load previously scraped data from a JSON file."""
@@ -21,14 +20,14 @@ def save_data(data, filename):
     with open(filename, "w") as f:
         json.dump(data, f, indent=4)
 
-def load_items(filename):
-    """Load the items configuration from a JSON file."""
+def load_config(filename):
+    """Load the configuration from a JSON file."""
     if os.path.exists(filename):
         with open(filename, "r") as f:
             return json.load(f)
     else:
-        print(f"Items file {filename} not found!")
-        return {"search": [], "item": []}
+        print(f"Configuration file {filename} not found!")
+        return {"search": [], "item": [], "discord_webhook_url": ""}
 
 def send_discord_notification(message, webhook_url):
     """Send a simple message to Discord via a webhook."""
@@ -203,7 +202,7 @@ def scrape_item_page(url):
         "picture": picture_url
     }
 
-def compare_and_notify(old_data, new_data):
+def compare_and_notify(old_data, new_data, webhook_url):
     """
     Compare old scraped data with new data.
     If a price drop or a change from out‑of‑stock to in‑stock is detected,
@@ -237,7 +236,7 @@ def compare_and_notify(old_data, new_data):
                     f"* Stock: {stock_str_new} (was {stock_str_old})\n\n"
                     f"Link: {new_info['product_url']}"
                 )
-                send_discord_notification(message, DISCORD_WEBHOOK_URL)
+                send_discord_notification(message, webhook_url)
         else:
             header = "# Watching New Product"
             new_price_formatted = format_price(new_info["price"])
@@ -248,31 +247,32 @@ def compare_and_notify(old_data, new_data):
                 f"* Stock: {stock_str_new}\n\n"
                 f"Link: {new_info['product_url']}"
             )
-            send_discord_notification(message, DISCORD_WEBHOOK_URL)
+            send_discord_notification(message, webhook_url)
 
 def main():
-    # Load previously stored scraped data and items to monitor
+    # Load previously stored scraped data and configuration
     stored_data = load_data(DATA_FILE)
-    items = load_items(ITEMS_FILE)
+    config = load_config(CONFIG_FILE)
     new_data = {}
 
     # ---- Search-based variant ----
-    for search_url in items.get("search", []):
+    for search_url in config.get("search", []):
         search_results = scrape_search_page(search_url)
         for item in search_results:
             new_data[item["product_id"]] = item
 
     # ---- Item-based variant ----
-    for item_url in items.get("item", []):
+    for item_url in config.get("item", []):
         item_result = scrape_item_page(item_url)
         if item_result:
             new_data[item_result["product_id"]] = item_result
 
     # Compare stored data with new data and notify if changes are detected
-    compare_and_notify(stored_data, new_data)
+    compare_and_notify(stored_data, new_data, config.get("discord_webhook_url"))
 
     # Save new data for the next run
     save_data(new_data, DATA_FILE)
 
 if __name__ == "__main__":
     main()
+    print("Scraping completed.")
