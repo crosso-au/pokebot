@@ -102,12 +102,13 @@ Then run it:
 `    ./install_python.sh`
 
 ## Configuration
-### items.json
+### config.json
 This file specifies the URLs to scrape. Its structure is:
 
 
 ```json
 {
+  "discord_webhook_url": "https://discord.com/api/webhooks/xxxxxxxxxxx................",
   "search": [
     "https://www.trollandtoad.com/category.php?...",
     "..."
@@ -126,7 +127,7 @@ This file specifies the URLs to scrape. Its structure is:
 This file stores the previous scrapes data and is used to detect changes in price or stock.
 
 ### Discord Webhook
-Update the DISCORD_WEBHOOK_URL in the script with your Discord webhook URL to receive notifications.
+Update the discord_webhook_url in the config.json with your Discord webhook URL to receive notifications.
 
 ## Running the Scraper
 Once the dependencies are installed and configuration is set up, run:
