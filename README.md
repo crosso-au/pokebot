@@ -99,7 +99,7 @@ Make the script executable:
 
 Then run it:
 
-`    ./install_python.sh`
+`./install_python.sh`
 
 ## Configuration
 ### config.json
