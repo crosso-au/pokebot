@@ -24,4 +24,4 @@ def install_dependencies():
 
 if __name__ == "__main__":
     install_dependencies()
-    print("\nSetup thing is complete. You may now do the thing.... (e.g., 'python .\PokeBot.py').")
+    print("\nThe thing finsihed..")
